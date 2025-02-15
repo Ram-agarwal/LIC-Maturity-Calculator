@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIC Maturity Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #003366;
+        }
+        .description {
+            font-size: 16px;
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        input[type="number"], input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #003366;
+            color: #fff;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #00509e;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+        .result p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>LIC Maturity Calculator</h1>
+        <p class="description">Enter your policy details to calculate your LIC maturity amount.</p>
+
+        <!-- User Input Form -->
+        <div class="input-group">
+            <label for="sum-assured">Sum Assured (in INR):</label>
+            <input type="number" id="sum-assured" placeholder="Enter sum assured" required>
+        </div>
+        
+        <div class="input-group">
+            <label for="policy-term">Policy Term (in Years):</label>
+            <input type="number" id="policy-term" placeholder="Enter policy term" required>
+        </div>
+        
+        <div class="input-group">
+            <label for="interest-rate">Interest Rate (per annum in %):</label>
+            <input type="number" id="interest-rate" placeholder="Enter interest rate" required>
+        </div>
+        
+        <div class="input-group">
+            <button onclick="calculateMaturity()">Calculate Maturity Amount</button>
+        </div>
+
+        <!-- Result Display -->
+        <div class="result" id="result">
+            <p id="maturity-amount"></p>
+        </div>
+    </div>
+
+    <script>
+        // Function to calculate the maturity amount
+        function calculateMaturity() {
+            // Get user inputs
+            var sumAssured = parseFloat(document.getElementById("sum-assured").value);
+            var policyTerm = parseInt(document.getElementById("policy-term").value);
+            var interestRate = parseFloat(document.getElementById("interest-rate").value);
+
+            // Validate inputs
+            if (isNaN(sumAssured) || isNaN(policyTerm) || isNaN(interestRate) || sumAssured <= 0 || policyTerm <= 0 || interestRate <= 0) {
+                alert("Please enter valid values.");
+                return;
+            }
+
+            // Calculate maturity amount (using simple interest formula for example purposes)
+            var maturityAmount = sumAssured + (sumAssured * interestRate * policyTerm) / 100;
+
+            // Display the result
+            document.getElementById("maturity-amount").innerHTML = "Your LIC Maturity Amount: ₹" + maturityAmount.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
